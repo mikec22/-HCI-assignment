@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>IVE Online Shop</title>
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="js/w3data.js"></script>
+</head>
+
+<body>
+	<div w3-include-html="nav.html" style="height: 70px;"></div>
+	<div class="container" style="width: 50%;">
+		<p class="font-weight-bold" style="font-size:30px">Member Registration</p>
+		<form method="get">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" class="form-control" name="name" id="name" placeholder="example: Chan Tai Man" required /> </div>
+			<div class="form-group">
+				<label for="exampleInputName2">Gender:</label>
+				<label class="custom-control custom-radio">
+					<input id="m" name="gender" type="radio" class="custom-control-input" checked> <span class="custom-control-indicator"></span> <span class="custom-control-description">Male</span> </label>
+				<label class="custom-control custom-radio">
+					<input id="f" name="gender" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Female</span> </label>
+			</div>
+			<div class="form-group">
+				<label for="email">Student Email:</label>
+				<div class="input-group">
+					<input type="text" name="studentID" class="form-control" placeholder="Student ID" aria-describedby="basic-addon2" id="email" required /> <span class="input-group-addon" id="basic-addon2" style="width: 60%">@stu.vtc.edu.hk</span> </div> <small class="form-text text-muted">This will be used to login your account.</small> </div>
+			<div class="form-group" id="pwdDiv">
+				<label for="password" class="form-control-label">Password:</label>
+				<input type="password" class="form-control" id="password" placeholder="Must be 8-20 characters long." required />
+				<div class="form-control-feedback" style="display: none;" id="pwdWarningMsg">Sorry, Must be 8-20 characters long. Please, try again!</div>
+			</div>
+			<div class="form-group" id="pwdDiv2">
+				<label for="password2" class="form-control-label">Retype Password:</label>
+				<input type="password" class="form-control" id="password2" placeholder="Please retype your password to ensure accurary." required/>
+				<div class="form-control-feedback" style="display: none;" id="pwd2WarningMsg">The retype password incorrect.</div>
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+			<button type="reset" class="btn btn-secondary btn-lg btn-block">Reset</button>
+		</form>
+	</div>
+</body>
+<script>
+	w3IncludeHTML();
+	//Check password length in 8 to 20
+	$("#password").focusout(function () {
+		var pwd = $(this).val();
+		if (pwd.length < 8 || pwd.length > 20) {
+			$("#pwdDiv").addClass("form-group has-danger");
+			$(this).addClass("form-control form-control-danger");
+			$("#pwdWarningMsg").show();
+		}
+		else {
+			$("#pwdDiv").removeClass("form-group has-danger");
+			$(this).removeClass("form-control form-control-danger");
+			$("#pwdDiv").addClass("form-group");
+			$(this).addClass("form-control");
+			$("#pwdWarningMsg").hide();
+		}
+	});
+	// ensure accurary password
+	$("#password2").focusout(function () {
+		if ($(this).val() != $("#password").val()) {
+			$("#pwdDiv2").addClass("form-group has-danger");
+			$(this).addClass("form-control form-control-danger");
+			$("#pwd2WarningMsg").show();
+		}
+		else {
+			$("#pwdDiv2").removeClass("form-group has-danger");
+			$(this).removeClass("form-control form-control-danger");
+			$("#pwdDiv2").addClass("form-group");
+			$(this).addClass("form-control");
+			$("#pwd2WarningMsg").hide();
+		}
+	});
+</script>
+
+</html>
