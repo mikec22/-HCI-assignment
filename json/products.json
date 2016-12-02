@@ -2,10 +2,74 @@
     "products": [
         {
             "productID": 1,
-            "productName": "",
-            "price": 100,
+            "category": "food",
+            "productName": "Cup Noodles Seafood Flavour",
+            "price": 6,
             "description": "",
-            "img": "",
+            "img": "food1.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 2,
+            "category": "food",
+            "productName": "Big Cup Noodles Seafood Flavour",
+            "price": 10,
+            "description": "",
+            "img": "food2.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 3,
+            "category": "food",
+            "productName": "Cup Noodles Spicy Seafood Flavour",
+            "price": 6,
+            "description": "",
+            "img": "food3.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 4,
+            "category": "food",
+            "productName": "Big Cup Noodles Spicy Seafood Flavour",
+            "price": 10,
+            "description": "",
+            "img": "food4.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 5,
+            "category": "food",
+            "productName": "Cup Noodles Chicken Flavour",
+            "price": 6,
+            "description": "",
+            "img": "food5.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 6,
+            "category": "food",
+            "productName": "Cup Noodles Prawn Flavour",
+            "price": 6,
+            "description": "",
+            "img": "food6.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 7,
+            "category": "food",
+            "productName": "Demae Ramen Sesame Oil Flavour Instant Noodle",
+            "price": 4,
+            "description": "",
+            "img": "food7.jpg",
+            "discount": 0.9
+        },
+        {
+            "productID": 8,
+            "category": "food",
+            "productName": "Demae Ramen Black Garlic Oil Tonkotsu Flavour Instant Noodle",
+            "price": 4,
+            "description": "",
+            "img": "food8.jpg",
             "discount": 0.9
         }
     ]
