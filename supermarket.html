@@ -53,9 +53,26 @@
 	w3IncludeHTML();
     $(function () {
             $.getJSON("json/products.json", function(data){
-                var items = [];
+                var items = "";
+                var count = 0;
                 $.each(data, function(key,val){
-                    items.push(val.productName + "<br>");
+                    if (count%3==0) {
+                        console.log(key);
+                        items += '<div class="card-deck">';
+                    }
+                    items += '<div class="card">\
+                                <img class="card-img-top img-fluid" src="img/'+val.img+'" alt="No image">\
+                                <div class="card-block">\
+                                    <h4 class="card-title">'+val.productName+'</h4>\
+                                    <p class="card-text text-xs-right">$ '+val.price+'</p>\
+                                    <button class="btn btn-primary" id="addCart">Add to Cart</button>\
+                                </div>\
+                            </div>';
+                    if (count%3==2||key==data.length-1) {
+                        console.log(key);
+                        items += "</div>";
+                    }
+                    count++;
                 });
                 $('.container').html(items);
             });
