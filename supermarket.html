@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>IVE Online Shop</title>
-	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
-	<script src="jQuery/jquery-3.1.1.min.js"></script>
-	<script src="js/tether.min.js"></script>
-	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
-	<script src="js/w3data.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>IVE Online Shop</title>
+    <link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+    <script src="jQuery/jquery-3.1.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script src="js/w3data.js"></script>
 </head>
 
 <body>
-	<div w3-include-html="nav.html"></div>
-	<div style="margin-top:70px"></div>
-	<div class="container">
-<!--	    <div class="card-deck-wrapper">-->
-<!--
+    <div w3-include-html="nav.html"></div>
+    <div style="margin-top:70px"></div>
+    <div class="container">
+        <!--	    <div class="card-deck-wrapper">-->
+        <!--
   <div class="card-deck">
     <div class="card">
       <img class="card-img-top img-fluid" src="img/food1.jpg" alt="No image">
@@ -45,38 +45,40 @@
       </div>
     </div>
   </div>
--->
-</div>
-<!--	</div>-->
+--></div>
+    <!--	</div>-->
 </body>
 <script>
-	w3IncludeHTML();
+    w3IncludeHTML();
     $(function () {
-            $.getJSON("json/products.json", function(data){
-                var items = "";
-                var count = 0;
-                $.each(data, function(key,val){
-                    if (count%3==0) {
-                        console.log(key);
-                        items += '<div class="card-deck">';
-                    }
-                    items += '<div class="card">\
-                                <img class="card-img-top img-fluid" src="img/'+val.img+'" alt="No image">\
+        $.getJSON("json/products.json", function (data) {
+            var items = "";
+            var count = 0;
+            $.each(data, function (key, val) {
+                if (count % 3 == 0) {
+                    items += '<div class="card-deck">';
+                }
+                items += '<div class="card">\
+                                <img class="card-img-top img-fluid" src="img/' + val.img + '" alt="No image">\
                                 <div class="card-block">\
-                                    <h4 class="card-title">'+val.productName+'</h4>\
-                                    <p class="card-text text-xs-right">$ '+val.price+'</p>\
-                                    <button class="btn btn-primary" id="addCart">Add to Cart</button>\
+                                    <h4 class="card-title">' + val.productName + '</h4>\
+                                    <p class="card-text text-xs-right">$ ' + val.price + '</p>\
+                                    <button class="btn btn-outline-primary btn-block" onclick="addToCart(' + val.productID+',\''+val.img+'\',\''+val.productName+'\','+val.price + ')"><img src="img/cart.png" style="height:20px; weight: 20px;">Add to Cart</button>\
                                 </div>\
                             </div>';
-                    if (count%3==2||key==data.length-1) {
-                        console.log(key);
-                        items += "</div>";
-                    }
-                    count++;
-                });
-                $('.container').html(items);
+                if (count % 3 == 2 || key == data.length - 1) {
+                    items += "</div>";
+                }
+                count++;
             });
+            $('.container').html(items);
         });
+    });
+
+    function addToCart(id,img,name,price) {
+        var cart = "";
+        console.log(id+img+name+price);
+    }
 </script>
 
 </html>

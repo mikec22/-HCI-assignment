@@ -19,10 +19,27 @@
 		</form>
 -->
    <ul class="nav navbar-nav float-xs-right">
-      <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/ic_add_shopping_cart_black_48dp_1x.png" style="height:20px; weight: 20px;">Shopping Cart</a>
-			<div class="dropdown-menu" aria-labelledby="supportedContentDropdown"> <a class="dropdown-item" href="#">Item</a> </div>
+      <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/cart.png" style="height:20px; weight: 20px;">Shopping Cart</a>
+			<ul class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+<!--			    <a class="dropdown-item" href="#">Item</a>-->
+			    <li class="nav-item">
+                  <span class="nav-item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <span class="item-info">
+                            <span>Item name</span>
+                            <span>23$</span>
+                        </span>
+                    </span>
+                    <span class="item-right">
+                        <button class="btn btn-xs btn-danger pull-right">x</button>
+                    </span>
+                </span>
+              </li>
+			</ul>
 		</li>
        <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
+       
    </ul>
 <!--    </div>-->
 	
