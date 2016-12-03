@@ -17,31 +17,6 @@
     <div w3-include-html="nav.html"></div>
     <div style="margin-top:70px"></div>
     <div class="container">
-       
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Unit Price</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <th scope="row">1</th>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
         
     </div>
 </body>
@@ -62,6 +37,70 @@
             }
         });
         
+        cartDetail();
+        
+        $(document).on('click', '#increase', function(event){
+            var id = $(event.target).closest('.row').find('input').attr('name');
+            $.ajax({
+            type: 'POST'
+            , url: 'php/cart.php'
+            , data: {
+                action: 'increase'
+                , id: id
+            }
+            , success: function (response) {
+                //                alert(response);
+                $('ul.dropdown-cart').html(response);
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                cartDetail();
+                }
+            });
+        });
+        $(document).on('click', '#decrease', function(event){
+            var id = $(event.target).closest('.row').find('input').attr('name');
+            var quantity = $(event.target).closest('.row').find('input').val();
+            if (quantity>1) {
+                $.ajax({
+                type: 'POST'
+                , url: 'php/cart.php'
+                , data: {
+                    action: 'decrease'
+                    , id: id
+                }
+                , success: function (response) {
+                    //                alert(response);
+                    $('ul.dropdown-cart').html(response);
+                    $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                    cartDetail();
+                    }
+                });
+            }
+        });
+        $(document).on('input', '.form-control', function(event){
+            var id = $(event.target).attr('name');
+            var quantity = $(event.target).val();
+            console.log(quantity);
+            if (quantity!=""&&quantity>0) {
+                $.ajax({
+                type: 'POST'
+                , url: 'php/cart.php'
+                , data: {
+                    action: 'edit'
+                    , id: id
+                    , quantity: quantity
+                }
+                , success: function (response) {
+                    //                alert(response);
+                    $('ul.dropdown-cart').html(response);
+                    $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                    cartDetail();
+                    }
+                });
+            }
+        })
+    });
+    
+    function cartDetail() {
         $.ajax({
             type: 'POST'
             , url: 'php/cartDetail.php'
@@ -71,7 +110,7 @@
                 //                $(response).appendTo('ul.dropdown-cart');
             }
         });
-    });
+    }
 
     function addToCart(btn, id, img, name, price) {
         console.log(id + img + name + price);

@@ -25,7 +25,19 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                 <td class=\"align-middle\"><img src=\"img/{$value['img']}\" style=\"height:70px; width:70px; object-fit: cover; object-position: center;\"></td>
                 <td class=\"align-middle\">{$value['name']}</td>
                 <td class=\"align-middle text-xs-center\">$$unit</td>
-                <td class=\"align-middle text-xs-center\">$quantity</td>
+                <td class=\"align-middle text-xs-center\">
+                <div class=\"row\">
+                    <div class=\"input-group\" style=\"width: 150px;\">
+                      <span class=\"input-group-btn\">
+                        <button class=\"btn btn-secondary\" type=\"button\" id=\"decrease\">-</button>
+                      </span>
+                      <input type=\"number\" class=\"form-control\" value=\"$quantity\" name=\"$key\" min=\"1\">
+                      <span class=\"input-group-btn\">
+                        <button class=\"btn btn-secondary\" type=\"button\" id=\"increase\">+</button>
+                      </span>
+                    </div>
+                </div>
+                </td>
                 <th class=\"align-middle text-xs-right\" scope=\"row\">$$price</th>
                 <td class=\"align-middle text-xs-center\"><a href=\"\"><img src=\"img/delete.png\" style=\"max-height:50px;\" onclick=\"delFromCart($key)\"></a></td>
             </tr>";

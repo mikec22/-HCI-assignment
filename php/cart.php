@@ -14,6 +14,12 @@ if ($action === "add") {
     }
 } else if ($action === "del") {
     unset($_SESSION['cart_details'][$id]);
+} else if ($action === "increase") {
+    $_SESSION['cart_details'][$id]['quantity'] += 1;
+} else if ($action === "decrease") {
+    $_SESSION['cart_details'][$id]['quantity'] -= 1;
+} else if ($action === "edit") {
+    $_SESSION['cart_details'][$id]['quantity'] = $quantity;
 }
 if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
     $i = 0;
