@@ -17,7 +17,7 @@
 	<div w3-include-html="nav.html" style="height: 70px;"></div>
 	<div class="container" style="width: 50%;">
 		<p class="font-weight-bold" style="font-size:30px">Member Registration</p>
-		<form method="get">
+		<form method="get" action="signUpSuccess.html">
 			<div class="form-group" id="nameDiv">
 				<label for="name">Name:</label>
 				<input type="text" class="form-control" name="name" id="name" placeholder="example: Chan Tai Man" required /> </div>
@@ -90,7 +90,7 @@
 		}
 	});
 	// ensure accurary password
-	$("#password2").keyup(function () {
+	$("#password2").keypress($("#password2").keyup(function () {
 		if (!isPassword2Valid()) {
 			$("#pwdDiv2").addClass("form-group has-danger");
 			$(this).addClass("form-control form-control-danger");
@@ -103,7 +103,7 @@
 			$(this).addClass("form-control form-control-success");
 			$("#pwd2WarningMsg").hide();
 		}
-	});
+	}));
 	//check student ID
 	$("#studID").focusout(function () {
 		var studID = $(this).val();
