@@ -17,22 +17,56 @@
     <div w3-include-html="nav.html"></div>
     <div style="margin-top:70px"></div>
     <div class="container">
-        
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <th scope="row">1</th>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <script>
     w3IncludeHTML();
     $(function () {
         $.ajax({
-            type: 'POST',
-            url: 'php/cart.php',
-            data: {
+            type: 'POST'
+            , url: 'php/cart.php'
+            , data: {
                 action: "list"
-            },
-            success: function(response) {
-//                alert(response);
+            }
+            , success: function (response) {
+                //                alert(response);
                 $('ul.dropdown-cart').html(response);
-//                $(response).appendTo('ul.dropdown-cart');
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                //                $(response).appendTo('ul.dropdown-cart');
+            }
+        });
+        
+        $.ajax({
+            type: 'POST'
+            , url: 'php/cartDetail.php'
+            , success: function (response) {
+                //                alert(response);
+                $('.container').html(response);
+                //                $(response).appendTo('ul.dropdown-cart');
             }
         });
     });
@@ -40,44 +74,46 @@
     function addToCart(btn, id, img, name, price) {
         console.log(id + img + name + price);
         $.ajax({
-            type: 'POST',
-            url: 'php/cart.php',
-            data: {
-                action: 'add',
-                id: id,
-                img: img,
-                name: name,
-                price: price,
-                quantity: 1
-            },
-            success: function(response) {
-//                alert(response);
+            type: 'POST'
+            , url: 'php/cart.php'
+            , data: {
+                action: 'add'
+                , id: id
+                , img: img
+                , name: name
+                , price: price
+                , quantity: 1
+            }
+            , success: function (response) {
+                //                alert(response);
                 $(btn).popover({
-                    placement : 'top',
-                    html: true,
-                    content: '<img src="img/checked.png"/> Added to cart',
-                    trigger: 'focus'
+                    placement: 'top'
+                    , html: true
+                    , content: '<img src="img/checked.png"/> Added to cart'
+                    , trigger: 'focus'
                 });
                 $(btn).popover('show');
                 $('ul.dropdown-cart').html(response);
-//                $(response).appendTo('ul.dropdown-cart');
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                //                $(response).appendTo('ul.dropdown-cart');
             }
         });
     }
-    
+
     function delFromCart(id) {
         console.log("del " + id);
         $.ajax({
-            type: 'POST',
-            url: 'php/cart.php',
-            data: {
-                action: 'del',
-                id: id
-            },
-            success: function(response) {
-//                alert(response);
+            type: 'POST'
+            , url: 'php/cart.php'
+            , data: {
+                action: 'del'
+                , id: id
+            }
+            , success: function (response) {
+                //                alert(response);
                 $('ul.dropdown-cart').html(response);
-//                $(response).appendTo('ul.dropdown-cart');
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+                //                $(response).appendTo('ul.dropdown-cart');
             }
         });
     }

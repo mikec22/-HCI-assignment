@@ -16,6 +16,7 @@ if ($action === "add") {
     unset($_SESSION['cart_details'][$id]);
 }
 if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
+    $i = 0;
     foreach ($_SESSION['cart_details'] as $key => $value) {
         echo "<li>
             <span class=\"item\">
@@ -27,11 +28,15 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                     </span>
                 </span>
                 <span class=\"item-right\">
-                    <button class=\"btn btn-sm btn-danger pull-right\" onclick=\"delFromCart($key)\">x</button>
+                    <a href=\"\"><img src=\"img/delete.png\" style=\"max-height:25px;\" onclick=\"delFromCart($key)\"></a>
                 </span>
             </span>
         </li>";
+//        if (++$i==5)
+//            break;
     }
+    echo "<div class=\"dropdown-divider\"></div>
+            <li class=\"text-xs-center\"><a href=\"cart.html\">Watch details ></a></li>";
 } else {
     echo "<li class=\"text-xs-center\">No item</li>";
 }
