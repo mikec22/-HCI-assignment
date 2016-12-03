@@ -18,7 +18,7 @@
 	<div class="container" style="width: 50%;">
 		<p class="font-weight-bold" style="font-size:30px">Member Registration</p>
 		<form method="get">
-			<div class="form-group">
+			<div class="form-group" id="nameDiv">
 				<label for="name">Name:</label>
 				<input type="text" class="form-control" name="name" id="name" placeholder="example: Chan Tai Man" required /> </div>
 			<div class="form-group">
@@ -28,10 +28,12 @@
 				<label class="custom-control custom-radio">
 					<input id="f" name="gender" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Female</span> </label>
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="studIDDiv">
 				<label for="email">Student Email:</label>
 				<div class="input-group">
-					<input type="text" name="studentID" class="form-control" placeholder="Student ID" aria-describedby="basic-addon2" id="email" required /> <span class="input-group-addon" id="basic-addon2" style="width: 60%">@stu.vtc.edu.hk</span> </div> <small class="form-text text-muted">This will be used to login your account.</small> </div>
+					<input type="text" name="studentID" class="form-control" placeholder="Student ID" aria-describedby="basic-addon2" id="studID" required /> <span class="input-group-addon" id="basic-addon2" style="width: 60%">@stu.vtc.edu.hk</span> </div> <small class="form-text text-muted">This will be used to login your account.</small>
+				<div class="form-control-feedback" style="display: none;" id="studIDWarningMsg"></div>
+			</div>
 			<div class="form-group" id="pwdDiv">
 				<label for="password" class="form-control-label">Password:</label>
 				<input type="password" class="form-control" id="password" placeholder="Must be 8-20 characters long." required />
@@ -42,17 +44,39 @@
 				<input type="password" class="form-control" id="password2" placeholder="Please retype your password to ensure accurary." required/>
 				<div class="form-control-feedback" style="display: none;" id="pwd2WarningMsg">The retype password incorrect.</div>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+			<button type="submit" id="submitBtn" class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
 			<button type="reset" class="btn btn-secondary btn-lg btn-block">Reset</button>
 		</form>
 	</div>
 </body>
 <script>
 	w3IncludeHTML();
+	//check is Integer
+	function isInt(value) {
+		var x = parseFloat(value);
+		return !isNaN(value) && (x | 0) === x;
+	}
+
+	function isPasswordValid() {
+		var pwd = $("#password").val();
+		return pwd.length >= 8 && pwd.length <= 20;
+	}
+
+	function isStudIDValid() {
+		var studID = $('#studID').val();
+		return isInt(studID) && studID.length == 9 && studID != 150222212;
+	}
+
+	function isPassword2Valid() {
+		return $("#password2").val() == $("#password").val();
+	}
+
+	function isNameValid() {
+		return $('#name').val().length >= 3;
+	}
 	//Check password length in 8 to 20
 	$("#password").focusout(function () {
-		var pwd = $(this).val();
-		if (pwd.length < 8 || pwd.length > 20) {
+		if (!isPasswordValid()) {
 			$("#pwdDiv").addClass("form-group has-danger");
 			$(this).addClass("form-control form-control-danger");
 			$("#pwdWarningMsg").show();
@@ -60,14 +84,14 @@
 		else {
 			$("#pwdDiv").removeClass("form-group has-danger");
 			$(this).removeClass("form-control form-control-danger");
-			$("#pwdDiv").addClass("form-group");
-			$(this).addClass("form-control");
+			$("#pwdDiv").addClass("form-group has-success");
+			$(this).addClass("form-control form-control-success");
 			$("#pwdWarningMsg").hide();
 		}
 	});
 	// ensure accurary password
-	$("#password2").focusout(function () {
-		if ($(this).val() != $("#password").val()) {
+	$("#password2").keyup(function () {
+		if (!isPassword2Valid()) {
 			$("#pwdDiv2").addClass("form-group has-danger");
 			$(this).addClass("form-control form-control-danger");
 			$("#pwd2WarningMsg").show();
@@ -75,9 +99,52 @@
 		else {
 			$("#pwdDiv2").removeClass("form-group has-danger");
 			$(this).removeClass("form-control form-control-danger");
-			$("#pwdDiv2").addClass("form-group");
-			$(this).addClass("form-control");
+			$("#pwdDiv2").addClass("form-group has-success");
+			$(this).addClass("form-control form-control-success");
 			$("#pwd2WarningMsg").hide();
+		}
+	});
+	//check student ID
+	$("#studID").focusout(function () {
+		var studID = $(this).val();
+		if (!isInt(studID) || studID.length != 9) {
+			$("#studIDDiv").addClass("form-group has-danger");
+			$(this).addClass("form-control form-control-danger");
+			$("#studIDWarningMsg").html("Sorry, that is not student ID format.").show();
+		}
+		else if ($(this).val() == 150222212) {
+			$("#studIDDiv").addClass("form-group has-danger");
+			$(this).addClass("form-control form-control-danger");
+			$("#studIDWarningMsg").html("Sorry, that student ID' s taken. Please try another.").show();
+		}
+		else {
+			$("#studIDDiv").removeClass("form-group has-danger");
+			$(this).removeClass("form-control form-control-danger");
+			$("#studIDDiv").addClass("form-group has-success");
+			$(this).addClass("form-control form-control-success");
+			$("#studIDWarningMsg").hide();
+		}
+	});
+	//check name is completed
+	$("#name").focusout(function () {
+		if (!isNameValid) {
+			$("#nameDiv").addClass("form-group has-danger");
+			$(this).addClass("form-control form-control-danger");
+		}
+		else {
+			$("#nameDiv").removeClass("form-group has-danger");
+			$(this).removeClass("form-control form-control-danger");
+			$("#nameDiv").addClass("form-group has-success");
+			$(this).addClass("form-control form-control-success");
+		}
+	});
+	//enable the submit button
+	$("input").keyup(function () {
+		if (isNameValid() && isPassword2Valid() && isPasswordValid() && isStudIDValid()) {
+			$("#submitBtn").removeAttr("disabled");
+		}
+		else {
+			$("#submitBtn").prop("disabled", true);
 		}
 	});
 </script>
