@@ -11,47 +11,6 @@
     <script src="js/tether.min.js"></script>
     <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
     <script src="js/w3data.js"></script>
-    <style>
-            ul.dropdown-cart{
-    min-width:250px;
-}
-ul.dropdown-cart li .item{
-    display:block;
-    padding:3px 10px;
-    margin: 3px 0;
-}
-ul.dropdown-cart li .item:hover{
-    background-color:#f3f3f3;
-}
-ul.dropdown-cart li .item:after{
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
-
-ul.dropdown-cart li .item-left{
-    float:left;
-}
-ul.dropdown-cart li .item-left img,
-ul.dropdown-cart li .item-left span.item-info{
-    float:left;
-}
-ul.dropdown-cart li .item-left span.item-info{
-    margin-left:10px;   
-}
-ul.dropdown-cart li .item-left span.item-info span{
-    display:block;
-}
-ul.dropdown-cart li .item-right{
-    float:right;
-}
-ul.dropdown-cart li .item-right button{
-    margin-top:14px;
-}
-    </style>
 </head>
 
 <body>
@@ -104,7 +63,7 @@ ul.dropdown-cart li .item-right button{
                                 <div class="card-block">\
                                     <h4 class="card-title">' + val.productName + '</h4>\
                                     <p class="card-text text-xs-right">$ ' + val.price + '</p>\
-                                    <button class="btn btn-outline-primary btn-block" onclick="addToCart(' + val.productID+',\''+val.img+'\',\''+val.productName+'\','+val.price + ')"><img src="img/cart.png" style="height:20px; weight: 20px;">Add to Cart</button>\
+                                    <button class="btn btn-outline-primary btn-block" onclick="addToCart(this,' + val.productID + ',\'' + val.img + '\',\'' + val.productName + '\',' + val.price + ')"><img src="img/cart.png" style="height:20px; weight: 20px;">Add to Cart</button>\
                                 </div>\
                             </div>';
                 if (count % 3 == 2 || key == data.length - 1) {
@@ -116,9 +75,48 @@ ul.dropdown-cart li .item-right button{
         });
     });
 
-    function addToCart(id,img,name,price) {
-        var cart = "";
-        console.log(id+img+name+price);
+    function addToCart(btn, id, img, name, price) {
+        console.log(id + img + name + price);
+        $.ajax({
+            type: 'POST',
+            url: 'php/cart.php',
+            data: {
+                action: 'add',
+                id: id,
+                img: img,
+                name: name,
+                price: price,
+                quantity: 1
+            },
+            success: function(response) {
+//                alert(response);
+                $(btn).popover({
+                    placement : 'top',
+                    content: 'Added to cart',
+                    trigger: 'focus'
+                });
+                $(btn).popover('show');
+                $('ul.dropdown-cart').html(response);
+//                $(response).appendTo('ul.dropdown-cart');
+            }
+        });
+    }
+    
+    function delFromCart(id) {
+        console.log("del " + id);
+        $.ajax({
+            type: 'POST',
+            url: 'php/cart.php',
+            data: {
+                action: 'del',
+                id: id
+            },
+            success: function(response) {
+//                alert(response);
+                $('ul.dropdown-cart').html(response);
+//                $(response).appendTo('ul.dropdown-cart');
+            }
+        });
     }
 </script>
 
