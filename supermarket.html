@@ -73,6 +73,22 @@
             });
             $('.container').html(items);
         });
+        
+        $.ajax({
+            type: 'POST',
+            url: 'php/cart.php',
+            data: {
+                action: "list"
+            },
+            success: function(response) {
+//                alert(response);
+                $('ul.dropdown-cart').html(response);
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+//                $(response).appendTo('ul.dropdown-cart');
+            }
+        });
+        
+        
     });
 
     function addToCart(btn, id, img, name, price) {
@@ -98,6 +114,7 @@
                 });
                 $(btn).popover('show');
                 $('ul.dropdown-cart').html(response);
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
 //                $(response).appendTo('ul.dropdown-cart');
             }
         });
@@ -115,6 +132,7 @@
             success: function(response) {
 //                alert(response);
                 $('ul.dropdown-cart').html(response);
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
 //                $(response).appendTo('ul.dropdown-cart');
             }
         });
