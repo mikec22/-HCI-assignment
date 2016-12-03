@@ -4,10 +4,14 @@ session_start();
 extract($_POST);
 
 if ($action === "add") {
-    $_SESSION['cart_details'][$id]['img'] = $img;
-    $_SESSION['cart_details'][$id]['name'] = $name;
-    $_SESSION['cart_details'][$id]['price'] = $price;
-    $_SESSION['cart_details'][$id]['quantity'] = $quantity;
+    if (!isset($_SESSION['cart_details'][$id])) {
+        $_SESSION['cart_details'][$id]['img'] = $img;
+        $_SESSION['cart_details'][$id]['name'] = $name;
+        $_SESSION['cart_details'][$id]['price'] = $price;
+        $_SESSION['cart_details'][$id]['quantity'] = $quantity;
+    } else {
+        $_SESSION['cart_details'][$id]['quantity'] += $quantity;
+    }
 } else if ($action === "del") {
     unset($_SESSION['cart_details'][$id]);
 }

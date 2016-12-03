@@ -92,7 +92,8 @@
 //                alert(response);
                 $(btn).popover({
                     placement : 'top',
-                    content: 'Added to cart',
+                    html: true,
+                    content: '<img src="img/checked.png"/> Added to cart',
                     trigger: 'focus'
                 });
                 $(btn).popover('show');
