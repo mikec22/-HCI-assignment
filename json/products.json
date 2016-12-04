@@ -1,74 +1,139 @@
 [
-    {
-        "productID": 1,
-        "category": "food",
-        "productName": "Cup Noodles Seafood Flavour",
-        "price": 6,
-        "description": "",
-        "img": "food1.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 2,
-        "category": "food",
-        "productName": "Big Cup Noodles Seafood Flavour",
-        "price": 10,
-        "description": "",
-        "img": "food2.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 3,
-        "category": "food",
-        "productName": "Cup Noodles Spicy Seafood Flavour",
-        "price": 6,
-        "description": "",
-        "img": "food3.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 4,
-        "category": "food",
-        "productName": "Big Cup Noodles Spicy Seafood Flavour",
-        "price": 10,
-        "description": "",
-        "img": "food4.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 5,
-        "category": "food",
-        "productName": "Cup Noodles Chicken Flavour",
-        "price": 6,
-        "description": "",
-        "img": "food5.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 6,
-        "category": "food",
-        "productName": "Cup Noodles Prawn Flavour",
-        "price": 6,
-        "description": "",
-        "img": "food6.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 7,
-        "category": "food",
-        "productName": "Demae Ramen Sesame Oil Flavour Instant Noodle",
-        "price": 4,
-        "description": "",
-        "img": "food7.jpg",
-        "discount": 0.9
-    },
-    {
-        "productID": 8,
-        "category": "food",
-        "productName": "Demae Ramen Black Garlic Oil Tonkotsu Flavour Instant Noodle",
-        "price": 4,
-        "description": "",
-        "img": "food8.jpg",
-        "discount": 0.9
+	{
+		"productID": 1
+		, "category": "food"
+		, "productName": "Cup Noodles Seafood Flavour"
+		, "price": "6.00"
+		, "description": "This product contains soya beans, eggs, fish, milk, crustacean, cereals containing gluten and their products."
+		, "img": "food1.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 2
+		, "category": "food"
+		, "productName": "Big Cup Noodles Seafood Flavour"
+		, "price": "10.00"
+		, "description": "This product contains soya beans, eggs, fish, milk, cereals containing gluten and their products."
+		, "img": "food2.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 3
+		, "category": "food"
+		, "productName": "Cup Noodles Spicy Seafood Flavour"
+		, "price": "6.00"
+		, "description": "This product contains soya beans, eggs, fish, milk, cereals containing gluten and their products."
+		, "img": "food3.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 4
+		, "category": "food"
+		, "productName": "Big Cup Noodles Spicy Seafood Flavour"
+		, "price": "10.00"
+		, "description": "This product contains soya beans, eggs, fish, milk, cereals containing gluten and their products."
+		, "img": "food4.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 5
+		, "category": "food"
+		, "productName": "Cup Noodles Chicken Flavour"
+		, "price": "6.00"
+		, "description": "This product contains soya beans, eggs, milk, cereals containing gluten and their products."
+		, "img": "food5.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 6
+		, "category": "food"
+		, "productName": "Cup Noodles Prawn Flavour"
+		, "price": "6.00"
+		, "description": "This product contains soya beans, eggs, milk, cereals containing gluten and their products."
+		, "img": "food6.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 7
+		, "category": "food"
+		, "productName": "Demae Ramen Sesame Oil Flavour Instant Noodle"
+		, "price": "4.00"
+		, "description": "This product contains soya beans, eggs, milk, cereals containing gluten and their products."
+		, "img": "food7.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 8
+		, "category": "food"
+		, "productName": "Demae Ramen Black Garlic Oil Tonkotsu Flavour Instant Noodle"
+		, "price": "4.00"
+		, "description": "This product contains soya beans, eggs, milk, cereals containing gluten and their products."
+		, "img": "food8.jpg"
+		, "discount": 0.9
+    }
+	, {
+		"productID": 9
+		, "category": "tools"
+		, "productName": "Stanley 94-248 65-Piece Homeowner's Tool Kit"
+		, "price": "399.00"
+		, "description": "Sockets feature Max-Drive design, a unique radius corner design that provides 15% more torque than standard sockets and simplify the turning of rounded corners"
+		, "img": "tool1.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 10
+		, "category": "tools"
+		, "productName": "Mediabridge Cat5e Ethernet Patch Cable"
+		, "price": "50.00"
+		, "description": "Compatible with 10/100 Base-T networks and feature enhanced 350 MHz bandwidth for distributing data, voice, and video at high-speeds. Includes adjustable & reusable Velcro cable strap for easy organization & storage."
+		, "img": "tool2.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 11
+		, "category": "tools"
+		, "productName": "AmazonBasics Apple Certified Lightning to USB Cable"
+		, "price": "110.00"
+		, "description": "Apple MFi certified charging and syncing cable for your Apple devices"
+		, "img": "tool3.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 12
+		, "category": "tools"
+		, "productName": "Stanley 33-425 Powerlock 25-Foot by 1-Inch Measuring Tape"
+		, "price": "60.00"
+		, "description": "Easy-to-read lockable yellow blade graduated in 1/16-inch"
+		, "img": "tool4.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 13
+		, "category": "tools"
+		, "productName": "ONSON Android Charger Cable,3Pack 10FT Extra Long Nylon Braided High Speed 2.0 USB to Micro USB"
+		, "price": "50.00"
+		, "description": " Fast Charge & Sync- Ensure a maximum charging speed up to 2.4A, charge faster than most standard cables and work better for tablets and quick charge devices."
+		, "img": "tool5.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 14
+		, "category": "tools"
+		, "productName": "Kindle Paperwhite E-reader - Black, 6\"\" High-Resolution Display"
+		, "price": "1250.00"
+		, "description": "Higher resolution display (300 ppi) - with twice as many pixels"
+		, "img": "tool6.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 15
+		, "category": "tools"
+		, "productName": "Fire Tablet, 7\" Display, Wi-Fi, 8 GB - Includes Special Offers, Black"
+		, "price": "1350.00"
+		, "description": "Beautiful 7\" IPS display and 1.3 GHz quad-core processor. Available in four colors."
+		, "img": "tool7.jpg"
+		, "discount": 0.9
+    }, {
+		"productID": 16
+		, "category": "tools"
+		, "productName": "SanDisk Cruzer Blade CZ50 16GB USB 2.0 Flash Drive"
+		, "price": "1350.00"
+		, "description": "High-Capacity Drive Accommodates Your Favorite Media Files"
+		, "img": "tool8.jpg"
+		, "discount": 0.9
     }
 ]
