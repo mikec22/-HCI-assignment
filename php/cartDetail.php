@@ -56,13 +56,13 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
     }
     if (isset($_COOKIE['user'])) {
         echo "<th colspan=\"5\" scope=\"row\" class=\"align-middle text-xs-right table-info h3\"><small class=\"text-muted\">Saved $".($total-$vipTotal)."</small> Total Price: $$vipTotal</th>
-                <td class=\"align-middle table-info text-xs-right\"><button class=\"btn btn-primary btn-block\">Checkout</button></td>
+                <td class=\"align-middle table-info text-xs-right\"><button class=\"btn btn-primary btn-block\" onclick=\"location.href='checkout.html'\">Checkout</button></td>
                 </tbody>
                 </table>
             </div>";
     } else {
         echo "<th colspan=\"5\" scope=\"row\" class=\"align-middle text-xs-right table-info h3\">Total Price: $$total</th>
-                <td class=\"align-middle table-info text-xs-right\"><button class=\"btn btn-primary btn-block\">Checkout</button></td>
+                <td class=\"align-middle table-info text-xs-right\"><button class=\"btn btn-primary btn-block\" onclick=\"location.href='checkout.html'\">Checkout</button></td>
                 </tbody>
                 </table>
             </div>";

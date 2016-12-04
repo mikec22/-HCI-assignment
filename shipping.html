@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>IVE Online Shop</title>
+    <link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="process.css" />
+    <script src="jQuery/jquery-3.1.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script src="js/w3data.js"></script>
+    <script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
+	<script src="js/cart.js"></script>
+</head>
+
+<body>
+    <div w3-include-html="nav.html"></div>
+    <div style="margin-top:70px"></div>
+    <div class="steps row">
+        <div class="line"></div>
+        <div class="step">
+            <div class="circle complete" id="step1">1</div>
+            <div class="label">Shopping <span class="responsive_hide">Cart</span></div>
+        </div>
+        <!-- end "step" -->
+        <div class="step">
+            <div class="circle complete" id="step2">2</div>
+            <div class="label">Order<span class="responsive_hide"> Information</span></div>
+        </div>
+        <!-- end "step" -->
+        <div class="step">
+            <div class="circle active" id="step3">3</div>
+            <div class="label">Shipping<span class="responsive_hide"> Information</span></div>
+        </div>
+        <!-- end "step" -->
+        <div class="step">
+            <div class="circle" id="step4">4</div>
+            <div class="label">Payment<span class="responsive_hide"> Options</span></div>
+        </div>
+        <!-- end "step" -->
+        <div class="step">
+            <div class="circle" id="step5">5</div>
+            <div class="label">Confirmation</div>
+        </div>
+        <!-- end "step" -->
+    </div>
+    <!-- end "steps" -->
+    <div class="container">
+       <div class="col-sm-8 offset-sm-2">
+        <div class="card card-block">
+  <h4 class="card-title">Shipping information</h4>
+  <form>
+  <div class="form-group">
+    <label for="tel">Tel</label>
+    <input type="tel" class="form-control" id="tel" placeholder="12345678">
+    <div class="form-control-feedback" id="telFeedback">Please enter your telephone number.</div>
+  </div>
+  <div class="form-group">
+    <label for="address">Delivery Address</label>
+    <input type="text" class="form-control" id="address" placeholder="Hong Kong">
+    <div class="form-control-feedback" id="addressFeedback">Please enter your address.</div>
+  </div>
+</form>
+<button class="btn btn-primary float-xs-right" id="next">Next</button>
+</div>
+        </div>
+    </div>
+</body>
+<script>
+    w3IncludeHTML();
+    $(function () {
+        $('#telFeedback').hide();
+        $('#addressFeedback').hide();
+        $(document).on('click', '#next', function(event){
+            if ($('#tel').val()=="") {
+                $('.form-group:eq(0)').addClass('has-warning');
+                $('#tel').addClass('form-control-warning');
+                $('#telFeedback').show();
+            } else if ($('#address').val()=="") {
+                $('.form-group:eq(1)').addClass('has-warning');
+                $('#address').addClass('form-control-warning');
+                $('#addressFeedback').show();
+            } else {
+                location.href = 'payment.html';
+            }
+        });
+        
+        $(document).on('input', '#tel', function(event){
+            $('.form-group:eq(0)').removeClass('has-warning');
+                $('#tel').removeClass('form-control-warning');
+                $('#telFeedback').hide();
+        });
+        $(document).on('input', '#address', function(event){
+            $('.form-group:eq(1)').removeClass('has-warning');
+                $('#address').removeClass('form-control-warning');
+                $('#addressFeedback').hide();
+        });
+    });
+    
+</script>
+
+</html>
