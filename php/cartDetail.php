@@ -8,10 +8,10 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                     <tr>
                         <th></th>
                         <th>Name</th>
-                        <th>Unit Price</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th class=\"text-xs-center\">Unit Price</th>
+                        <th class=\"text-xs-center\">Quantity</th>
+                        <th class=\"text-xs-center\">Price</th>
+                        <th class=\"text-xs-center\">Action</th>
                     </tr>
                 </thead>
                 <tbody>";
@@ -27,7 +27,7 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                 <td class=\"align-middle text-xs-center\">$$unit</td>
                 <td class=\"align-middle text-xs-center\">
                 <div class=\"row\">
-                    <div class=\"input-group\" style=\"width: 150px;\">
+                    <div class=\"input-group\" style=\"width: 150px; margin:auto;\">
                       <span class=\"input-group-btn\">
                         <button class=\"btn btn-secondary\" type=\"button\" id=\"decrease\">-</button>
                       </span>
@@ -38,7 +38,7 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                     </div>
                 </div>
                 </td>
-                <th class=\"align-middle text-xs-right\" scope=\"row\">$$price</th>
+                <th class=\"align-middle text-xs-center\" scope=\"row\">$$price</th>
                 <td class=\"align-middle text-xs-center\"><a href=\"\"><img src=\"img/delete.png\" style=\"max-height:50px;\" onclick=\"delFromCart($key)\"></a></td>
             </tr>";
     }
