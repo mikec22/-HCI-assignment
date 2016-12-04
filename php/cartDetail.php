@@ -16,6 +16,7 @@ if (isset($_SESSION['cart_details']) && count($_SESSION['cart_details'])>0) {
                 </thead>
                 <tbody>";
     $total = 0;
+    $vipTotal = 0;
     foreach ($_SESSION['cart_details'] as $key => $value) {
         $unit = $value['price'];
         $vipUnit = $unit * 0.9;
