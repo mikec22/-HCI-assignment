@@ -11,6 +11,8 @@
 	<script src="js/tether.min.js"></script>
 	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
 	<script src="js/w3data.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
 </head>
 
 <body>
@@ -92,15 +94,15 @@
 	// ensure accurary password
 	$("#password2").keypress($("#password2").keyup(function () {
 		if (!isPassword2Valid()) {
-			$("#pwdDiv2").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger");
+			$("#pwdDiv2").addClass("has-danger");
+			$(this).addClass("form-control-danger");
 			$("#pwd2WarningMsg").show();
 		}
 		else {
-			$("#pwdDiv2").removeClass("form-group has-danger");
-			$(this).removeClass("form-control form-control-danger");
-			$("#pwdDiv2").addClass("form-group has-success");
-			$(this).addClass("form-control form-control-success");
+			$("#pwdDiv2").removeClass("has-danger");
+			$(this).removeClass("form-control-danger");
+			$("#pwdDiv2").addClass("has-success");
+			$(this).addClass("form-control-success");
 			$("#pwd2WarningMsg").hide();
 		}
 	}));
@@ -108,34 +110,34 @@
 	$("#studID").focusout(function () {
 		var studID = $(this).val();
 		if (!isInt(studID) || studID.length != 9) {
-			$("#studIDDiv").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger");
+			$("#studIDDiv").addClass("has-danger");
+			$(this).addClass("form-control-danger");
 			$("#studIDWarningMsg").html("Sorry, that is not student ID format.").show();
 		}
 		else if ($(this).val() == 150222212) {
-			$("#studIDDiv").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger");
+			$("#studIDDiv").addClass("has-danger");
+			$(this).addClass("form-control-danger");
 			$("#studIDWarningMsg").html("Sorry, that student ID' s taken. Please try another.").show();
 		}
 		else {
-			$("#studIDDiv").removeClass("form-group has-danger");
-			$(this).removeClass("form-control form-control-danger");
-			$("#studIDDiv").addClass("form-group has-success");
-			$(this).addClass("form-control form-control-success");
+			$("#studIDDiv").removeClass("has-danger");
+			$(this).removeClass("form-control-danger");
+			$("#studIDDiv").addClass("has-success");
+			$(this).addClass("form-control-success");
 			$("#studIDWarningMsg").hide();
 		}
 	});
 	//check name is completed
 	$("#name").focusout(function () {
 		if (!isNameValid()) {
-			$("#nameDiv").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger");
+			$("#nameDiv").addClass("has-danger");
+			$(this).addClass("form-control-danger");
 		}
 		else {
-			$("#nameDiv").removeClass("form-group has-danger");
-			$(this).removeClass("form-control form-control-danger");
-			$("#nameDiv").addClass("form-group has-success");
-			$(this).addClass("form-control form-control-success");
+			$("#nameDiv").removeClass("has-danger");
+			$(this).removeClass("form-control-danger");
+			$("#nameDiv").addClass("has-success");
+			$(this).addClass("form-control-success");
 		}
 	});
 	//enable the submit button

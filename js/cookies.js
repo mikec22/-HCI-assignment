@@ -20,15 +20,15 @@ function getCookie(cname) {
 	return '';
 }
 
-function checkCookie() {
-	var user = getCookie("user");
-	if (user != "") {
-		alert("Welcome again " + user);
-	}
-	else {
-		user = prompt("Please enter your name:", "");
-		if (user != "" && user != null) {
-			setCookie("username", user, 365);
-		}
+function deleteCookie(cname) {
+	console.log('run deleteCookie ' + cname);
+	setCookie(cname, "", -1)
+	location.reload();
+}
+
+function checkUser(){
+	var user=getCookie("user");
+    if (user != "") {
+        $('.user').html(user);
 	}
 }

@@ -47,6 +47,10 @@
 	ul.dropdown-cart li .item-right button {
 		margin-top: 14px;
 	}
+	
+	.login {
+		display: none;
+	}
 </style>
 <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;height: 65px;">
 	<!--
@@ -73,8 +77,13 @@
 				<li class="text-xs-center">No item</li>
 			</ul>
 		</li>
-		<li class="nav-item"> <a class="nav-link" href="login.html">Login</a> </li>
-		<li class="nav-item"><a class="nav-link" href="signupForm.html">Sign Up</a></li>
+		<li class="nav-item not-login"> <a class="nav-link" href="login.html">Login</a> </li>
+		<li class="nav-item not-login"><a class="nav-link" href="signupForm.html">Sign Up</a>
+		<li class="nav-item login"><a class="nav-link" href="#">Hi, <span class="user"></span></a>
+		</li>	
+		<button class="btn btn-link login" id="logoutBtn" type="submit" onclick="deleteCookie('user')">Logout</button>
 	</ul>
 	<!--    </div>-->
 </nav>
+
+

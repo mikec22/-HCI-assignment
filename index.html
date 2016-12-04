@@ -11,9 +11,11 @@
 	<script src="js/tether.min.js"></script>
 	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
 	<script src="js/w3data.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
 </head>
 
-<body>
+<body onload="checkUser()">
 	<div w3-include-html="nav.html" style="height: 65px;"></div>
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -32,6 +34,12 @@
 </body>
 <script>
 	w3IncludeHTML();
+	
+	$("#logoutBtn").click(function(){
+		console.log('run');
+		document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	});
+
 </script>
 
 </html>
