@@ -39,6 +39,18 @@
 		console.log('run');
 		document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	});
+    
+    $.ajax({
+            type: 'POST',
+            url: 'php/cart.php',
+            data: {
+                action: "list"
+            },
+            success: function(response) {
+                $('ul.dropdown-cart').html(response);
+                $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
+            }
+        });
 
 </script>
 
