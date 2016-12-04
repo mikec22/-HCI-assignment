@@ -127,7 +127,7 @@
 	});
 	//check name is completed
 	$("#name").focusout(function () {
-		if (!isNameValid) {
+		if (!isNameValid()) {
 			$("#nameDiv").addClass("form-group has-danger");
 			$(this).addClass("form-control form-control-danger");
 		}

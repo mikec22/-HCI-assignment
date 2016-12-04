@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>IVE Online Shop</title>
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="jQuery/jquery-ui.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="js/w3data.js"></script>
+	<script src="js/getParameter.js"></script>
+	<script src="js/cookies.js"></script>
+</head>
+
+<body>
+	<div w3-include-html="nav.html" style="height: 65px;"></div>
+	<div class="container" style="width: 50%; margin-top: 30px;">
+		<form action="loginSuccess.html">
+			<center class="font-weight-bold" style="font-size:50px">Login</center>
+			<center class="form-control-feedback" id="msg" style="color:red; display: none;">Invliad Student ID or password! Please try again.</center>
+			<div class="form-group" id="studIDDiv">
+				<div class="form-group has-danger">
+					<div class="form-control-feedback" id="msg" style="display: none;"></div>
+				</div>
+				<div class="input-group" style="margin-top: 30px;">
+					<input type="text" name="studentID" class="form-control" placeholder="Student ID" aria-describedby="basic-addon2" id="studID" required /> <span class="input-group-addon" id="basic-addon2" style="width: 60%">@stu.vtc.edu.hk</span> </div>
+				<div class="form-control-feedback" style="display: none;" id="studIDWarningMsg"></div>
+			</div>
+			<div class="form-group" id="pwdDiv">
+				<input type="password" class="form-control" id="password" placeholder="Password" required /> </div>
+			<button type="submit" id="submitBtn" class="btn btn-primary btn-lg btn-block" disabled>Login</button>
+		</form> <small class="form-text text-muted"><center>Not a member? <a href="signupForm.html">Sign up now</a> </center></small> </div>
+</body>
+<script>
+	w3IncludeHTML();
+
+	function isCompletedID() {
+		return $('#studID').val().length >= 9;
+	}
+
+	function isCompletedPwd() {
+		return $('#password').val().length >= 8;
+	}
+	$("input").keyup(function () {
+		if (isCompletedID() && isCompletedPwd()) {
+			$("#submitBtn").removeAttr("disabled");
+		}
+		else {
+			$("#submitBtn").prop("disabled", true);
+		}
+	});
+	$(function () {
+		var msg = $.urlParam('msg');
+		if (msg != null) {
+			$('#msg').html(msg).show();
+		}
+	});
+	$("form").submit(function (event) {
+		if ($("#studID").val() === "150212355" && $("#password").val() === '12345678') {
+			setCookie('user', 'Chan Tai Man', 1);
+			return;
+		}
+		else {
+			$("#msg").html("Invliad Student ID or password! Please try again.").show();
+			$("#msg").effect("shake", {times: 4}, 1000);
+			event.preventDefault();
+		}
+	});
+</script>
+
+</html>
