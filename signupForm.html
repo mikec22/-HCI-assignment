@@ -8,6 +8,7 @@
 	<title>IVE Online Shop</title>
 	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
 	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="jQuery/jquery-ui.min.js"></script>
 	<script src="js/tether.min.js"></script>
 	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
 	<script src="js/w3data.js"></script>
@@ -80,7 +81,7 @@
 	$("#password").focusout(function () {
 		if (!isPasswordValid()) {
 			$("#pwdDiv").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger");
+			$(this).addClass("form-control form-control-danger").effect("shake", {times: 4}, 1000);
 			$("#pwdWarningMsg").show();
 		}
 		else {
@@ -111,12 +112,12 @@
 		var studID = $(this).val();
 		if (!isInt(studID) || studID.length != 9) {
 			$("#studIDDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger");
+			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
 			$("#studIDWarningMsg").html("Sorry, that is not student ID format.").show();
 		}
 		else if ($(this).val() == 150222212) {
 			$("#studIDDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger");
+			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
 			$("#studIDWarningMsg").html("Sorry, that student ID' s taken. Please try another.").show();
 		}
 		else {
@@ -131,7 +132,7 @@
 	$("#name").focusout(function () {
 		if (!isNameValid()) {
 			$("#nameDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger");
+			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
 		}
 		else {
 			$("#nameDiv").removeClass("has-danger");
@@ -147,6 +148,21 @@
 		}
 		else {
 			$("#submitBtn").prop("disabled", true);
+		}
+	});
+	
+	$("#password2").focusout(function () {
+		if (!isPassword2Valid()) {
+			$("#pwdDiv2").addClass("has-danger");
+			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
+			$("#pwd2WarningMsg").show();
+		}
+		else {
+			$("#pwdDiv2").removeClass("has-danger");
+			$(this).removeClass("form-control-danger");
+			$("#pwdDiv2").addClass("has-success");
+			$(this).addClass("form-control-success");
+			$("#pwd2WarningMsg").hide();
 		}
 	});
 </script>

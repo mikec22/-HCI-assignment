@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>IVE Online Shop</title>
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/itemDisplay.css" />
+	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="js/w3data.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
+	<script src="js/cart.js"></script>
+</head>
+
+<body>
+	<div w3-include-html="nav.html" style="margin-top:70px"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container" style="width: 100%; height: 100px;">
+					<center>
+						<form class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" style="width: 60%;" id="search" placeholder="Search">
+								<button type="submit" class="btn btn-primary">Search</button>
+							</div>
+						</form>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="list-group"> <a href="#" class="list-group-item active">All</a>
+					<div class="list-group-item">
+						<p class="list-group-item-text">Supermarket</p>
+					</div>
+					<div class="list-group-item">
+						<p class="list-group-item-text">Tools</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10 item-display">
+
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	w3IncludeHTML();
+	$(function () {
+		$.getJSON("json/products.json", function (data) {
+			var items = "";
+			var count = 0;
+			$.each(data, function (key, val) {
+				items += '<figure class="snip1246" style=" display: inline-block; border: 1px solid black;"> <img src="img/' + val.img + '" alt="sample88" /><figcaption><h5>' + val.productName + '</h5><div class="price">$' + val.price + '</div> <button class="add-to-cart" onclick="addToCart(this,' + val.productID + ',\'' + val.img + '\',\'' + val.productName + '\',' + val.price + ')" >Add to Cart</button> </figcaption></figure>';
+			});
+			$('.item-display').html(items);
+		});
+	});
+	$(".hover").mouseleave(function () {
+		$(this).removeClass("hover");
+	});
+</script>
+
+</html>
