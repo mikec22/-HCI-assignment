@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>IVE Online Shop</title>
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/imgZoom.css" />
+	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="jQuery/jquery-ui.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="js/w3data.js"></script>
+	<script src="js/getParameter.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
+	<script src="js/cart.js"></script>
+</head>
+
+<body>
+	<div w3-include-html="nav.html" style="height: 65px;"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6"> <img class="item" height="320" src="img/tool1.jpg" />
+				<div id="zoom"></div>
+			</div>
+			<div class="col-md-6" style="margin-top: 100px;">
+				<dl> <h3 id="productName">123
+				</h3>
+					<dd id="description"> </dd> <dt>
+				</dt> </dl>
+				<button type="button" class="btn btn-success" onclick="addCart(this)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	w3IncludeHTML();
+	(function () {
+		var zoom = document.getElementById('zoom')
+			, Zw = zoom.offsetWidth
+			, Zh = zoom.offsetHeight
+			, img = document.querySelector('img');
+		var timeout, ratio, Ix, Iy;
+
+		function activate() {
+			document.body.classList.add('active');
+		}
+
+		function deactivate() {
+			document.body.classList.remove('active');
+		}
+
+		function updateMagnifier(x, y) {
+			zoom.style.top = (y) + 'px';
+			zoom.style.left = (x) + 'px';
+			zoom.style.backgroundPosition = ((Ix - x) * ratio + Zw / 2) + 'px ' + ((Iy - y) * ratio + Zh / 2) + 'px';
+		}
+
+		function onLoad() {
+			ratio = img.naturalWidth / img.width;
+			zoom.style.backgroundImage = 'url(' + img.src + ')';
+			Ix = img.offsetLeft;
+			Iy = img.offsetTop;
+		}
+
+		function onMousemove(e) {
+			clearTimeout(timeout);
+			activate();
+			updateMagnifier(e.x, e.y);
+			timeout = setTimeout(deactivate, 2500);
+		}
+
+		function onMouseleave() {
+			deactivate();
+		}
+		img.addEventListener('load', onLoad);
+		img.addEventListener('mousemove', onMousemove);
+		img.addEventListener('mouseleave', onMouseleave);
+	})();
+	$(function () {
+		$.getJSON("json/products.json", function (data) {
+			$.each(data, function (key, val) {
+				if (val.productID == $.urlParam('id')) {
+					$('.item').attr('src', "img/"+val.img);
+					$('#description').html(val.description);
+					$('#productName').html(val.productName);
+				}
+			});
+		});
+		
+	});
+
+	function findItem(id) {
+		$.getJSON("json/products.json", function (data) {
+			$.each(data, function (key, val) {
+				if (val.productID == id) {
+					console.log(val.productName);
+					return val;
+				}
+			});
+		});
+	}
+</script>
+
+</html>
