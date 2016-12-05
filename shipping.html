@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="process.css" />
     <script src="jQuery/jquery-3.1.1.min.js"></script>
+    <script src="jQuery/jquery-ui.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
     <script src="js/w3data.js"></script>
@@ -78,11 +79,11 @@
         $(document).on('click', '#next', function(event){
             if ($('#tel').val()=="") {
                 $('.form-group:eq(0)').addClass('has-warning');
-                $('#tel').addClass('form-control-warning');
+                $('#tel').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#telFeedback').show();
             } else if ($('#address').val()=="") {
                 $('.form-group:eq(1)').addClass('has-warning');
-                $('#address').addClass('form-control-warning');
+                $('#address').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#addressFeedback').show();
             } else {
                 location.href = 'payment.html';

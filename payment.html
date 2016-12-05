@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="process.css" />
     <script src="jQuery/jquery-3.1.1.min.js"></script>
+    <script src="jQuery/jquery-ui.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
     <script src="js/w3data.js"></script>
@@ -91,22 +92,22 @@
         $(document).on('click', '#payment', function (event) {
             if ($('#number').val() == "") {
                 $('.form-group:eq(0)').addClass('has-warning');
-                $('#number').addClass('form-control-warning');
+                $('#number').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#numberFeedback').show();
             }
             else if ($('#name').val() == "") {
                 $('.form-group:eq(1)').addClass('has-warning');
-                $('#name').addClass('form-control-warning');
+                $('#name').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#nameFeedback').show();
             }
             else if ($('#expiry').val() == "") {
                 $('.form-group:eq(2)').addClass('has-warning');
-                $('#expiry').addClass('form-control-warning');
+                $('#expiry').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#expiryFeedback').show();
             }
             else if ($('#cvc').val() == "") {
                 $('.form-group:eq(3)').addClass('has-warning');
-                $('#cvc').addClass('form-control-warning');
+                $('#cvc').addClass('form-control-warning').effect("shake", {times: 4}, 1000);
                 $('#cvcFeedback').show();
             }
             else {
