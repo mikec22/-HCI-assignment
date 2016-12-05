@@ -27,7 +27,8 @@
 <script>
 	w3IncludeHTML();
 	$(function () {
-        $('h3').html('You have ' + getCookie('point') + ' bonus point');
+        if (getCookie('point')!="")
+            $('h3').html('You have ' + getCookie('point') + ' bonus point');
         
 		$.getJSON("json/gift.json", function (data) {
 			var items = "";
