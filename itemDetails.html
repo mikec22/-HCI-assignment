@@ -27,10 +27,14 @@
 				<div id="zoom"></div>
 			</div>
 			<div class="col-md-6" style="margin-top: 100px;">
-				<dl> <h3 id="productName">123
-				</h3>
-					<dd id="description"> </dd> <dt>
+				<dl>
+					<h3 id="productName">
+				</h3> <dt id="category">
+				</dt>
+					<dd id="description"> </dd> <dt id="price">
 				</dt> </dl>
+				<div class="col-lg-6">
+					<input type="number" id="quantity" class="form-control" value="1" min='1' /> </div>
 				<button type="button" class="btn btn-success" onclick="addCart(this)">Add to Cart</button>
 			</div>
 		</div>
@@ -84,14 +88,29 @@
 		$.getJSON("json/products.json", function (data) {
 			$.each(data, function (key, val) {
 				if (val.productID == $.urlParam('id')) {
-					$('.item').attr('src', "img/"+val.img);
+					$('.item').attr('src', "img/" + val.img);
 					$('#description').html(val.description);
 					$('#productName').html(val.productName);
+					$('#category').html('Category: ' + val.category);
+					$('#price').html('$' + val.price);
 				}
 			});
 		});
-		
 	});
+
+	function addCart(btn) {
+		$.getJSON("json/products.json", function (data) {
+			$.each(data, function (key, val) {
+				if (val.productID == $.urlParam('id')) {
+					var qty = $("#quantity").val();
+					for (i = 0; i < qty; i++) {
+						addToCart(btn, val.productID, val.img, val.productName, val.price)
+					}
+				}
+			});
+		});
+		window.location = "item.html";
+	}
 
 	function findItem(id) {
 		$.getJSON("json/products.json", function (data) {
