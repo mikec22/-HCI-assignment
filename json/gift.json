@@ -1,0 +1,44 @@
+[
+	{
+		"giftID": 1
+		, "giftName": "$100 iTunes gift card"
+		, "bp": "200"
+		, "description": ""
+		, "img": "itunes.jpg"
+    }
+    , {
+		"giftID": 2
+		, "giftName": "$200 Google play gift card"
+		, "bp": "400"
+		, "description": ""
+		, "img": "googleplay.jpg"
+    }
+    , {
+		"giftID": 3
+		, "giftName": "$200 Play Station card"
+		, "bp": "400"
+		, "description": ""
+		, "img": "playstation.jpg"
+    }
+    , {
+		"giftID": 4
+		, "giftName": "$150 Xbox gift card"
+		, "bp": "300"
+		, "description": ""
+		, "img": "xbox.jpg"
+    }
+    , {
+		"giftID": 5
+		, "giftName": "$100 STEAM card"
+		, "bp": "200"
+		, "description": ""
+		, "img": "steam.jpg"
+    }
+    , {
+		"giftID": 6
+		, "giftName": "Starbucks gift card"
+		, "bp": "200"
+		, "description": ""
+		, "img": "starbucks.jpg"
+    }
+]

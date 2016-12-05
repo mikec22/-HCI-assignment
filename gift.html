@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>IVE Online Shop</title>
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/itemDisplay.css" />
+	<script src="jQuery/jquery-3.1.1.min.js"></script>
+	<script src="jQuery/jquery-ui.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="js/w3data.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/checkUser.js"></script>
+	<script src="js/cart.js"></script>
+</head>
+
+<body>
+	<div w3-include-html="nav.html" style="margin-top:70px"></div>
+	<div class="container">
+       <h3>You have 0 bonus point</h3>
+    </div>
+</body>
+<script>
+	w3IncludeHTML();
+	$(function () {
+        $('h3').html('You have ' + getCookie('point') + ' bonus point');
+        
+		$.getJSON("json/gift.json", function (data) {
+			var items = "";
+			var count = 0;
+			$.each(data, function (key, val) {
+				items += '<figure class="snip1246" style=" display: inline-block; border: 1px solid black;"> <img src="img/' + val.img + '" alt="sample88" /><figcaption><h5>' + val.giftName + '</h5><div class="price">' + val.bp + ' BP</div> <button class="add-to-cart" onclick="redumption(this,\'' + val.giftName + '\',\'' + val.bp + '\')" >Redemption</button> </figcaption></figure>';
+			});
+			$('.container').append(items);
+		});
+	});
+    
+    function redumption(btn, giftName, bp) {
+        console.log(giftName+bp);
+        var point = getCookie('point');
+        console.log(point+" "+bp);
+        if (Number(point)>=Number(bp)) {
+            
+            //modal
+            var modal = '<div class="modal fade" id="myModal">\
+                          <div class="modal-dialog" role="document">\
+                            <div class="modal-content">\
+                              <div class="modal-header">\
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\
+                                  <span aria-hidden="true">&times;</span>\
+                                </button>\
+                                <h4 class="modal-title">Redeemed</h4>\
+                              </div>\
+                              <div class="modal-body">\
+                                <p>'+giftName+' is redeemed. Please come and take your gift.</p>\
+                              </div>\
+                              <div class="modal-footer">\
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\
+                              </div>\
+                            </div>\
+                          </div>\
+                        </div>';
+            $('body').prepend(modal);
+            $('#myModal').modal('show');
+            //alert(giftName + "is redeemed. Please come and take your gift.");
+            setCookie('point', (point-bp).toFixed(2),1);
+            var cookie = getCookie('point');
+            $('h3').html('You have ' + cookie + ' bonus point');
+        } else {
+            console.log('no');
+            var modal = '<div class="modal fade" id="myModal2">\
+                          <div class="modal-dialog" role="document">\
+                            <div class="modal-content">\
+                              <div class="modal-header">\
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\
+                                  <span aria-hidden="true">&times;</span>\
+                                </button>\
+                                <h4 class="modal-title">Sorry</h4>\
+                              </div>\
+                              <div class="modal-body">\
+                                <p>You don\'t have enough bonus point</p>\
+                              </div>\
+                              <div class="modal-footer">\
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\
+                              </div>\
+                            </div>\
+                          </div>\
+                        </div>';
+            $('body').prepend(modal);
+            $('#myModal2').modal('show');
+        }
+    }
+    
+	$(".hover").mouseleave(function () {
+		$(this).removeClass("hover");
+	});
+	
+	$('#supermarket').click(function() {
+		$('#all').removeClass("active");
+		$('#tools').removeClass("active");
+		$(this).addClass('active');
+		$('.snip1246').hide();
+		$('.snip1246:lt(8)').fadeIn(1000);
+	});
+	
+	$('#all').click(function() {
+		$('#supermarket').removeClass("active");
+		$('#tools').removeClass("active");
+		$(this).addClass('active');
+		$('.snip1246').hide();
+		$('.snip1246').fadeIn(1000);
+	});
+	
+	$('#tools').click(function() {
+		$('#supermarket').removeClass("active");
+		$('#all').removeClass("active");
+		$(this).addClass('active');
+		$('.snip1246').hide();
+		$('.snip1246:gt(7)').fadeIn(1000);
+	});
+	
+</script>
+
+</html>

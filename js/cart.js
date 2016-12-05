@@ -38,7 +38,10 @@ function addToCart(btn, id, img, name, price) {
                 $(btn).popover('show');
                 $('ul.dropdown-cart').html(response);
                 $('.tag').text($('ul.dropdown-cart li').not('.text-xs-center').length);
-//                $(response).appendTo('ul.dropdown-cart');
+//                $(btn).closest('figure').find('img').animate({right:100,bottom:100,width:0,height:0},500, function() {
+//                    $(this).attr('style','');
+//                    $(this).hide().delay(500).fadeIn(500);
+//                });
             }
         });
     }

@@ -13,8 +13,8 @@
     <script src="bootstrap-4.0.0-alpha.5/js/bootstrap.min.js"></script>
     <script src="js/w3data.js"></script>
     <script src="js/cookies.js"></script>
-    <script src="js/checkUser.js"></script>
-    <script src="js/cart.js"></script>
+	<script src="js/checkUser.js"></script>
+<!--	<script src="js/cart.js"></script>-->
 </head>
 
 <body>
@@ -50,92 +50,38 @@
     </div>
     <!-- end "steps" -->
     <div class="container">
-        <div class="col-sm-8 offset-sm-2">
-            <div class="card card-block">
-                <h4 class="card-title">Payment</h4>
-                <form>
-                    <div class="form-group">
-                        <label for="number">Card Number</label>
-                        <input type="text" class="form-control" id="number" name="number" placeholder="xxxx-xxxx-xxxx-xxxx">
-                        <div class="form-control-feedback" id="numberFeedback">Please enter your card number.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Cardholder's Name">
-                        <div class="form-control-feedback" id="nameFeedback">Please enter cardholder's name.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry">Expiry Date</label>
-                        <input type="text" class="form-control" id="expiry" name="expiry" placeholder="03/2020">
-                        <div class="form-control-feedback" id="expiryFeedback">Please enter expiry date.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cvc">CVC</label>
-                        <input type="text" class="form-control" id="cvc" name="cvc" placeholder="3 or 4 digit">
-                        <div class="form-control-feedback" id="cvcFeedback">Please enter CVC.</div>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </body>
 <script>
     w3IncludeHTML();
     $(function () {
-        $('#price').append('$'+getCookie('price'));
-        $('.form-control-feedback').hide();
-        $(document).on('click', '#payment', function (event) {
-            if ($('#number').val() == "") {
-                $('.form-group:eq(0)').addClass('has-warning');
-                $('#number').addClass('form-control-warning');
-                $('#numberFeedback').show();
-            }
-            else if ($('#name').val() == "") {
-                $('.form-group:eq(1)').addClass('has-warning');
-                $('#name').addClass('form-control-warning');
-                $('#nameFeedback').show();
-            }
-            else if ($('#expiry').val() == "") {
-                $('.form-group:eq(2)').addClass('has-warning');
-                $('#expiry').addClass('form-control-warning');
-                $('#expiryFeedback').show();
-            }
-            else if ($('#cvc').val() == "") {
-                $('.form-group:eq(3)').addClass('has-warning');
-                $('#cvc').addClass('form-control-warning');
-                $('#cvcFeedback').show();
-            }
-            else {
-                location.href = 'confirm.html';
-            }
+        cartDetail();
+        
+        $(document).on('click', '#continue', function(event){
+            location.href = 'index.html';
         });
-        $(document).on('input', '#number', function (event) {
-            $('.form-group:eq(0)').removeClass('has-warning');
-            $('#number').removeClass('form-control-warning');
-            $('#numberFeedback').hide();
-        });
-        $(document).on('input', '#name', function (event) {
-            $('.form-group:eq(1)').removeClass('has-warning');
-            $('#name').removeClass('form-control-warning');
-            $('#nameFeedback').hide();
-        });
-        $(document).on('input', '#expiry', function (event) {
-            $('.form-group:eq(2)').removeClass('has-warning');
-            $('#expiry').removeClass('form-control-warning');
-            $('#expiryFeedback').hide();
-        });
-        $(document).on('input', '#cvc', function (event) {
-            $('.form-group:eq(3)').removeClass('has-warning');
-            $('#cvc').removeClass('form-control-warning');
-            $('#cvcFeedback').hide();
-        });
-        $('form').card({
-            // a selector or DOM element for the container
-            // where you want the card to appear
-            container: '.card-wrapper', // *required*
-            // all of the other options from above
+        
+        $(document).on('input', '#address', function(event){
+            $('.form-group').removeClass('has-warning');
+                $('#address').removeClass('form-control-warning');
+                $('.form-control-feedback').remove();
         });
     });
+    
+    function cartDetail() {
+        $.ajax({
+            type: 'POST'
+            , url: 'php/checkout.php'
+            , data: {
+                action: 'confirm'
+            }
+            , success: function (response) {
+                //                alert(response);
+                $('.container').html(response);
+                //                $(response).appendTo('ul.dropdown-cart');
+            }
+        });
+    }
 </script>
 
 </html>
