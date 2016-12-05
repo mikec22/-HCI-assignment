@@ -17,6 +17,24 @@
 </head>
 
 <body>
+	<div class="modal fade">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+					<h4 class="modal-title">Form incompleted</h4> </div>
+				<div class="modal-body">
+					<p>Please complete the form!&hellip;</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 	<div w3-include-html="nav.html" style="height: 70px;"></div>
 	<div class="container" style="width: 50%;">
 		<p class="font-weight-bold" style="font-size:30px">Member Registration</p>
@@ -81,7 +99,9 @@
 	$("#password").focusout(function () {
 		if (!isPasswordValid()) {
 			$("#pwdDiv").addClass("form-group has-danger");
-			$(this).addClass("form-control form-control-danger").effect("shake", {times: 4}, 1000);
+			$(this).addClass("form-control form-control-danger").effect("shake", {
+				times: 4
+			}, 1000);
 			$("#pwdWarningMsg").show();
 		}
 		else {
@@ -112,12 +132,16 @@
 		var studID = $(this).val();
 		if (!isInt(studID) || studID.length != 9) {
 			$("#studIDDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
+			$(this).addClass("form-control-danger").effect("shake", {
+				times: 4
+			}, 1000);
 			$("#studIDWarningMsg").html("Sorry, that is not student ID format.").show();
 		}
 		else if ($(this).val() == 150222212) {
 			$("#studIDDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
+			$(this).addClass("form-control-danger").effect("shake", {
+				times: 4
+			}, 1000);
 			$("#studIDWarningMsg").html("Sorry, that student ID' s taken. Please try another.").show();
 		}
 		else {
@@ -132,7 +156,9 @@
 	$("#name").focusout(function () {
 		if (!isNameValid()) {
 			$("#nameDiv").addClass("has-danger");
-			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
+			$(this).addClass("form-control-danger").effect("shake", {
+				times: 4
+			}, 1000);
 		}
 		else {
 			$("#nameDiv").removeClass("has-danger");
@@ -150,11 +176,12 @@
 			$("#submitBtn").prop("disabled", true);
 		}
 	});
-	
 	$("#password2").focusout(function () {
 		if (!isPassword2Valid()) {
 			$("#pwdDiv2").addClass("has-danger");
-			$(this).addClass("form-control-danger").effect("shake", {times: 4}, 1000);
+			$(this).addClass("form-control-danger").effect("shake", {
+				times: 4
+			}, 1000);
 			$("#pwd2WarningMsg").show();
 		}
 		else {
